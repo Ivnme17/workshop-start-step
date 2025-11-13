@@ -55,18 +55,9 @@ const { content } = Astro.props;
 </section>
 
 <script>
-  import { actions } from 'astro:actions';
-  const form = document.getElementById('newsletter-form-wide');
+import { handleSubmit } from "./newsletter.business";
 
-  const handleSubmit = async (event: Event) => {
-    event.preventDefault();
-    const form = event.target as HTMLFormElement;
-    const sendFormData = new FormData(form);
-    const result = await actions.sendSubcription(sendFormData);
-    if (result.data?.success) {
-      form.reset();
-    }
-  };
+const form = document.getElementById('newsletter-form-wide');
 
   if (form && form instanceof HTMLFormElement) {
     form.addEventListener('submit', e => handleSubmit(e));
